@@ -22,9 +22,9 @@
         	<tr><td>First Name:</td> 
         	<td><input type="firstName" name="firstName"></td></tr>
         	<tr><td>Last Name:</td> 
-        	<td><input type="lastName" name="lasttName"></td></tr>
+        	<td><input type="lastName" name="lastName"></td></tr>
         	<tr><td>Age:</td> 
-        	<td><input type="lastName" name="lasttName"></td></tr>
+        	<td><input type="lastName" name="lastName"></td></tr>
         	<tr><td><input type="submit" name="submit" value="Login"></td><td><a href="Home.jsp">Log in here!</a></td></tr>
         	</table>
         </form>
