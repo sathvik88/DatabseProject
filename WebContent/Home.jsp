@@ -11,27 +11,16 @@
   <h1>Website</h1>
 </center>
 <div align="center">
-        <table border="1" cellpadding="5">
-            <caption><h2>Login Here</h2></caption>
-           <tr>
-                <th>Username: </th>
-                <td>
-                    <input type="text" name="name" size="45"/>  
-                </td>
-            </tr>
-            <tr>
-                <th>Password: </th>
-                <td>
-                    <input type="text" name="name" size="45"/>  
-                </td>
-            </tr>
-             <tr>
-                <td colspan="2" align="center">
-                    <input type="submit" value="Save" />
-                </td>
-            </tr>
-        </table>
-       <a href="new">Sign up here!</a>
+        <form action="LoginRegister">
+        	<table>
+        	<tr><td>UserName:</td> 
+        	<td><input type="text" name="name"></td></tr>
+        	<tr><td>Password:</td> 
+        	<td><input type="password" name="password"></td></tr>
+        	<tr> 
+        	<td><input type="submit" name="submit" value="Login"></td><td><a href="register.jsp">Sign up here!</a></td></tr>
+        	</table>
+        </form>
     </div>   
 
 </body>
