@@ -47,7 +47,7 @@ public class UsersDAOImpl implements UsersDAO {
 			System.out.println(e);
 		}
 		
-		return null;
+		return u;
 	}
 
 }
