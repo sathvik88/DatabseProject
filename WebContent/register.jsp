@@ -9,23 +9,24 @@
 <body>
 <center>
   <h1>Comedian Database</h1>
+  <h2>Register</h2>
 </center>
 <div align="center">
-        <form action="LoginRegister">
+        <form action="LoginRegister" method = "post">
         	<table>
-        	<tr><td>E-mail:</td> 
-        	<td><input type="userName" name="userName"></td></tr>
+        	<tr><td>Email:</td> 
+        	<td><input type="text" name="username"></td></tr>
         	<tr><td>Password:</td> 
-        	<td><input type="password" name="password"></td></tr>
+        	<td><input type="password" name="password1"></td></tr>
         	<tr><td>Re-Type Password:</td> 
-        	<td><input type="password" name="password"></td></tr>
+        	<td><input type="password" name="password2"></td></tr>
         	<tr><td>First Name:</td> 
-        	<td><input type="firstName" name="firstName"></td></tr>
+        	<td><input type="text" name="firstName"></td></tr>
         	<tr><td>Last Name:</td> 
-        	<td><input type="lastName" name="lastName"></td></tr>
+        	<td><input type="text" name="lastName"></td></tr>
         	<tr><td>Age:</td> 
         	<td><input type="number" name="age"></td></tr>
-        	<tr><td><input type="submit" name="submit" value="Login"></td><td><a href="Home.jsp">Log in here!</a></td></tr>
+        	<tr><td><input type="submit" name="submit" value="register"></td><td><a href="login.jsp">Log in here!</a></td></tr>
         	</table>
         </form>
     </div>   
