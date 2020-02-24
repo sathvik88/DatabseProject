@@ -9,7 +9,7 @@
 <body>
 <center>
   <h1>Comedian Database</h1>
-  <h2>Hello ${message}!</h2>
+<%--   <h2>Hello ${message}!</h2> --%>
 </center>
 
 </body>

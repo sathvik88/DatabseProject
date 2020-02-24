@@ -14,7 +14,24 @@ public class Users {
     	this.username = username;
     }
     
-    public Users(int age, String username, String password, String firstName, String lastName) {
+    
+    /**
+	 * @param username
+	 * @param password
+	 * @param firstName
+	 * @param lastName
+	 * @param age
+	 */
+	public Users(String username, String password, String firstName, String lastName, int age) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.age = age;
+	}
+
+	public Users(int age, String username, String password, String firstName, String lastName) {
         this(password, firstName, lastName, age);
         this.username = username;
     }
