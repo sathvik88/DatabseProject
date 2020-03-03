@@ -12,3 +12,5 @@ Comedian Database requires Oracle Enterprise Edition, Java 8 / 1.8 JRE, mySQL an
 $ git clone https://github.com/sathvik88/DatabseProject.git
 $ cd DatabseProject
 ```
+### Youtube Videos
+* [Part 1](https://youtu.be/DQahnaK4rlE)
