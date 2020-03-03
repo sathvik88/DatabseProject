@@ -19,7 +19,7 @@
 <%
 	String driverName = "com.mysql.jdbc.Driver";
 	String connectionUrl = "jdbc:mysql://localhost:3306/";
-	String dbName = "comediandb"; // change schema name to match, also change on line 62
+	String dbName = "comediandb"; // change schema name to match, also change on line 76
 	String userId = "root";
 	String password = "pass1234";
 	
