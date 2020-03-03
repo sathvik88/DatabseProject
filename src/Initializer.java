@@ -91,7 +91,7 @@ public class Initializer extends HttpServlet {
 //==============================================================================================	
 // 						Refreshes the home page showing initialized table 
 //==============================================================================================		
-		response.sendRedirect("Home.jsp"); 
+		response.sendRedirect("Initial.jsp"); 
 	}
 //==============================================================================================	
 //										Get Request
