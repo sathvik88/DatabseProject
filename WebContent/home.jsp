@@ -61,6 +61,7 @@
 				<td><b>First Name</b></td>
 				<td><b>Last Name</b></td>
 				<td><b>Age</b></td>
+				<td><b>Gender</b></td>
 			   </thead>
 		
 <!-- 
@@ -84,6 +85,7 @@
 				<td><%=resultSet.getString("firstName")%></td>
 				<td><%=resultSet.getString("lastName")%></td>
 				<td><%=resultSet.getString("age")%></td>
+				<td><%=resultSet.getString("gender")%></td>
 			</tr>
 			<%
 			}
