@@ -105,6 +105,7 @@
 <!-- 			<input id = "Initialize" type="submit" value="Initialize Database" style="color : blue"> -->
 <!-- 			<p><a href="Home.jsp">Click here to refresh the page!</a></p> -->
 <!-- 		</form> -->
+			<p><a href="Login.jsp">Click here to Log Out!</a></p>
 	</body>
 </html>
 

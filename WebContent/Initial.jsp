@@ -104,6 +104,7 @@
 		<form action="Initializer"> 
 			<input id = "Initialize" type="submit" value="Initialize Database" style="color : blue">
 			<p><a href="Initial.jsp">Click here to refresh the page!</a></p>
+			<p><a href="Login.jsp">Click here to Log Out!</a></p>
 		</form>
 	</body>
 </html>
