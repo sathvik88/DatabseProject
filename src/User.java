@@ -12,6 +12,7 @@ public class User {
     protected String password;
     protected String firstName;
     protected String lastName;
+    protected String gender;
  
     public User() {
     }
@@ -20,17 +21,18 @@ public class User {
         this.id = id;
     }
  
-    public User(int id, String username, String password, String firstName, String lastName, int age) {
-        this(username, password, firstName, lastName, age);
+    public User(int id, String username, String password, String firstName, String lastName, int age, String gender) {
+        this(username, password, firstName, lastName, age, gender);
         this.id = id;
     }
      
-    public User(String username, String password, String firstName, String lastName, int age) {
+    public User(String username, String password, String firstName, String lastName, int age, String gender) {
         this.username = username;
     	this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
+        this.gender = gender;
     }
  
     public int getId() {
@@ -77,4 +79,12 @@ public class User {
     public void setAge(int age) {
         this.age = age;
     }
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
 }

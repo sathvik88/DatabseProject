@@ -51,7 +51,11 @@
 				</div>
 				<div class="form-row">
 					<label for="age">AGE</label>
-					<input type="number" name="age" id="age" class="input-text" size="5" required pattern="[0-9]{1,3}">
+					<input type="number" name="age" id="age" class="input-text" size="5" required title="Please enter a number" required pattern="[0-9]{1,3}">
+				</div>
+				<div class="form-row">
+					<label for="gender">GENDER</label>
+					<input type="text" name="gender" id="gender" class="input-text" size="1" required title="Please enter M or F" required pattern="[M,F]">
 				</div>
 				<div class="form-row-last">
 					<input type="submit" name="register" class="register" value="Register">

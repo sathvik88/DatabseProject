@@ -66,13 +66,14 @@ public class UserDAO {
             
     public boolean insert(User user) throws SQLException {
     	connect_func();         
-		String sql = "insert into  users(username, password, firstName, lastName, age) values (?, ?, ?, ?, ?)";
+		String sql = "insert into  users(username, password, firstName, lastName, age, gender) values (?, ?, ?, ?, ?, ?)";
 		preparedStatement = (PreparedStatement) connect.prepareStatement(sql);
 		preparedStatement.setString(1, user.username);
 		preparedStatement.setString(2, user.password);
 		preparedStatement.setString(3, user.firstName);
 		preparedStatement.setString(4, user.lastName);
 		preparedStatement.setInt(5, user.age);
+		preparedStatement.setString(6, user.gender);
 //		preparedStatement.executeUpdate();
 		
         boolean rowInserted = preparedStatement.executeUpdate() > 0;
@@ -101,8 +102,9 @@ public class UserDAO {
             	String passWORD = rs.getString(3);        	
             	String Fname = rs.getString(4);          	
             	String Lname = rs.getString(5);           	
-            	int Age = rs.getInt(6);            	
-            	user = new User(id, Username,passWORD,Fname,Lname,Age);
+            	int Age = rs.getInt(6);   
+            	String Gender = rs.getString(7);
+            	user = new User(id, Username,passWORD,Fname,Lname,Age, Gender);
             }                  
 		}
 		catch(Exception e) {

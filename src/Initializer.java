@@ -62,6 +62,7 @@ public class Initializer extends HttpServlet {
 				"	  firstName VARCHAR(45), \r\n" + 
 				"	  lastName VARCHAR(45),\r\n" + 
 				"	  age INT,\r\n" + 
+				"	  gender VARCHAR(45),\r\n" + 
 				"	  PRIMARY KEY(id)\r\n" + 
 				");\r\n" + 
 				"";	
@@ -71,17 +72,17 @@ public class Initializer extends HttpServlet {
 //==============================================================================================	
 //						 		Inserting 10 Default Queries into DB
 //==============================================================================================
-		String sql2 = "INSERT INTO users(username, password , firstName, lastName, age)  \r\n" +
-				"VALUES ('root', 'pass1234', 'Root', 'Patel', '69'),\r\n" +
-				"('jason@gmail.com', 'jason123', 'Jason', 'Matt', '21'),\r\n" + 
-				"('drake@gmail.com', 'ovo123', 'Drake', 'Grahm', '21'),\r\n" + 
-				"('travis@gmail.com', 'jackboys', 'Travis', 'Scott', '21'),\r\n" + 
-				"('don@gmail.com', 'don123', 'Don', 'Toliver', '21'),\r\n" + 
-				"('nav@gmail.com', 'perc', 'Nav', 'Raj', '21'),\r\n" + 
-				"('levi@gmail.com', 'yesirski', 'Levi', 'Bentlee', '21'),\r\n" + 
-				"('kai@gmail.com', 'boba', 'Kai', 'Bentlee', '21'),\r\n" + 
-				"('zak@gmail.com', 'longo123', 'Zak', 'Jack', '21'),\r\n" + 
-				"('jet@gmail.com', 'blue', 'Jet', 'Bentlee', '21')\r\n" + 
+		String sql2 = "INSERT INTO users(username, password , firstName, lastName, age, gender)  \r\n" +
+				"VALUES ('root', 'pass1234', 'Root', 'Patel', '69', 'M'),\r\n" +
+				"('jason@gmail.com', 'jason123', 'Jason', 'Matt', '21', 'M'),\r\n" + 
+				"('drake@gmail.com', 'ovo123', 'Drake', 'Grahm', '21', 'M'),\r\n" + 
+				"('travis@gmail.com', 'jackboys', 'Travis', 'Scott', '21', 'F'),\r\n" + 
+				"('don@gmail.com', 'don123', 'Don', 'Toliver', '21', 'M'),\r\n" + 
+				"('nav@gmail.com', 'perc', 'Nav', 'Raj', '21', 'M'),\r\n" + 
+				"('levi@gmail.com', 'yesirski', 'Levi', 'Bentlee', '21', 'M'),\r\n" + 
+				"('kai@gmail.com', 'boba', 'Kai', 'Bentlee', '21', 'M'),\r\n" + 
+				"('zak@gmail.com', 'longo123', 'Zak', 'Jack', '21', 'M'),\r\n" + 
+				"('jet@gmail.com', 'blue', 'Jet', 'Bentlee', '21', 'M')\r\n" + 
 				";";
 		preparedStatement = (PreparedStatement) connect.prepareStatement(sql2);
 		preparedStatement.executeUpdate();

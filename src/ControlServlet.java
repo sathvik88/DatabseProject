@@ -74,7 +74,8 @@ public class ControlServlet extends HttpServlet {
         String firstName = request.getParameter("firstName");
         String  lastName = request.getParameter("lastName");
         int age = Integer.parseInt(request.getParameter("age"));
-        User newUser = new User(username, password, firstName, lastName, age);
+        String  gender = request.getParameter("gender");
+        User newUser = new User(username, password, firstName, lastName, age, gender);
         userDAO.insert(newUser);
         response.sendRedirect("Login.jsp");  // The sendRedirect() method works at client side and sends a new request
     }
