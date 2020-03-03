@@ -6,7 +6,7 @@
 Comedian Database is a database using mySQL, Java, JSP and BootStrap
 ### Installation
 
-Comedian Database requires Oracle Enterprise Edition, Java 8 / 1.8 JRE, mySQL and Tomcat to run.
+Comedian Database requires Oracle Enterprise Edition, Java 8 / 1.8 JRE, mySQL and Tomcat v9 to run.
 
 ```sh
 $ git clone https://github.com/sathvik88/DatabseProject.git
