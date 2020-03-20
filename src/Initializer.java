@@ -41,8 +41,8 @@ public class Initializer extends HttpServlet {
                 throw new SQLException(e);
             }
             connect = (Connection) DriverManager
-  			      .getConnection("jdbc:mysql://127.0.0.1:3306/comediandb?" // Change to match DB
-  			          + "user=root&password=pass1234");
+  			      .getConnection("jdbc:mysql://127.0.0.1:3306/comedian?" // Change to match DB
+  			          + "user=root&password=glamboy99");
             System.out.println(connect);
         }
 	}

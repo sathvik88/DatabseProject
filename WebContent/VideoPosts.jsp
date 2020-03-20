@@ -49,19 +49,17 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 	<body>
-		<center><h1>Welcome the Home page!</h1></center>
+		<center><h1>Welcome to the Posts!</h1></center>
 			
 		<div class="container">
-			 <h2>User Accounts</h2>
+			 <h2>User Posts</h2>
 			 <p>Pulling data from Comedian Database</p>            
 			 <table class="table table-striped" align="center" cellpadding="5" cellspacing="5" border="1">
 			   <thead>
-			    <td><b>Username</b></td>
-				<td><b>Password</b></td>
-				<td><b>First Name</b></td>
-				<td><b>Last Name</b></td>
-				<td><b>Age</b></td>
-				<td><b>Gender</b></td>
+			    <td><b>URL</b></td>
+				<td><b>Title</b></td>
+				<td><b>Description</b></td>
+				<td><b>Tags</b></td>
 			   </thead>
 		
 <!-- 
@@ -73,19 +71,17 @@
 			try {
 			connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
 			statement = connection.createStatement();
-			String sql = "SELECT * FROM comedian.users"; // change to match DB
+			String sql = "SELECT * FROM comedian.posts"; // change to match DB
 			
 			resultSet = statement.executeQuery(sql);
 			while (resultSet.next()) {
 			%>
 			
 			<tr bgcolor="#FFFFFF">
-				<td><%=resultSet.getString("username")%></td>
-				<td><%=resultSet.getString("password")%></td>
-				<td><%=resultSet.getString("firstName")%></td>
-				<td><%=resultSet.getString("lastName")%></td>
-				<td><%=resultSet.getString("age")%></td>
-				<td><%=resultSet.getString("gender")%></td>
+				<td><%=resultSet.getString("url")%></td>
+				<td><%=resultSet.getString("title")%></td>
+				<td><%=resultSet.getString("description")%></td>
+				<td><%=resultSet.getString("tags")%></td>
 			</tr>
 			<%
 			}
@@ -106,7 +102,6 @@
 <!-- 			<p><a href="Home.jsp">Click here to refresh the page!</a></p> -->
 <!-- 		</form> -->
 			<p><a href="Login.jsp">Click here to Log Out!</a></p>
-			<p><a href="Post.jsp">Click here to post YouTube videos!</a></p>
 	</body>
 </html>
 

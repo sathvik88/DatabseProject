@@ -52,8 +52,8 @@ public class UserDAO {
                 throw new SQLException(e);
             }
             connect = (Connection) DriverManager
-  			      .getConnection("jdbc:mysql://127.0.0.1:3306/comediandb?" // change schema name to match also on line 
-  			          + "user=root&password=pass1234");
+  			      .getConnection("jdbc:mysql://127.0.0.1:3306/comedian?" // change schema name to match also on line 
+  			          + "user=root&password=glamboy99");
             System.out.println(connect);
         }
     }
@@ -66,7 +66,7 @@ public class UserDAO {
             
     public boolean insert(User user) throws SQLException {
     	connect_func();         
-		String sql = "insert into  users(username, password, firstName, lastName, age, gender) values (?, ?, ?, ?, ?, ?)";
+		String sql = "insert into users(username, password, firstName, lastName, age, gender) values (?, ?, ?, ?, ?, ?)";
 		preparedStatement = (PreparedStatement) connect.prepareStatement(sql);
 		preparedStatement.setString(1, user.username);
 		preparedStatement.setString(2, user.password);
@@ -88,10 +88,10 @@ public class UserDAO {
 		User user = null;
 		try {	 
             connect = (Connection) DriverManager
-                    .getConnection("jdbc:mysql://127.0.0.1:3306/comediandb?" + "user=root&password=pass1234"); // change schema name to match
+                    .getConnection("jdbc:mysql://127.0.0.1:3306/comedian?" + "user=root&password=glamboy99"); // change schema name to match
 			
             System.out.println("everything fine before query");
-            PreparedStatement sql = connect.prepareStatement("select * from comediandb.users where username =? and password=?"); // change schema name to match       
+            PreparedStatement sql = connect.prepareStatement("select * from comedian.users where username =? and password=?"); // change schema name to match       
             sql.setString(1, username);
             sql.setString(2, password);
             ResultSet rs = sql.executeQuery();

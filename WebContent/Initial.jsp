@@ -19,9 +19,9 @@
 <%
 	String driverName = "com.mysql.jdbc.Driver";
 	String connectionUrl = "jdbc:mysql://localhost:3306/";
-	String dbName = "comediandb"; // change schema name to match, also change on line 62
+	String dbName = "comedian"; // change schema name to match, also change on line 62
 	String userId = "root";
-	String password = "pass1234";
+	String password = "glamboy99";
 	
 	try {
 		Class.forName(driverName);
@@ -73,7 +73,7 @@
 			try {
 			connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
 			statement = connection.createStatement();
-			String sql = "SELECT * FROM comediandb.users"; // change to match DB
+			String sql = "SELECT * FROM comedian.users"; // change to match DB
 			
 			resultSet = statement.executeQuery(sql);
 			while (resultSet.next()) {
@@ -105,6 +105,7 @@
 			<input id = "Initialize" type="submit" value="Initialize Database" style="color : blue">
 			<p><a href="Initial.jsp">Click here to refresh the page!</a></p>
 			<p><a href="Login.jsp">Click here to Log Out!</a></p>
+			<p><a href="Post.jsp">Click here to post YouTube videos!</a></p>
 		</form>
 	</body>
 </html>

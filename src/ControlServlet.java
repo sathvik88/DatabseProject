@@ -25,9 +25,11 @@ import java.sql.PreparedStatement;
 public class ControlServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private UserDAO userDAO;
+    private PostDAO postDAO;
  
     public void init() {
         userDAO = new UserDAO(); 
+        postDAO = new PostDAO();
     }
  
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -47,7 +49,8 @@ public class ControlServlet extends HttpServlet {
             case "/insert":
             	insertUser(request, response);
                 break;
-
+            case "/insertPost":
+            	insertPost(request,response);
             default:          	
             	          	
                 break;
@@ -78,6 +81,16 @@ public class ControlServlet extends HttpServlet {
         User newUser = new User(username, password, firstName, lastName, age, gender);
         userDAO.insert(newUser);
         response.sendRedirect("Login.jsp");  // The sendRedirect() method works at client side and sends a new request
+    }
+    private void insertPost(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException {
+        String url = request.getParameter("url");
+        String title = request.getParameter("title");
+        String description = request.getParameter("description");
+        String  tags = request.getParameter("tags");
+        Post newPost = new Post(url, title, description, tags);
+        postDAO.insert(newPost);
+        response.sendRedirect("VideoPosts.jsp");
     }
  
 }
