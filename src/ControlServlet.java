@@ -30,6 +30,7 @@ public class ControlServlet extends HttpServlet {
     public void init() {
         userDAO = new UserDAO(); 
         postDAO = new PostDAO();
+    
     }
  
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -51,6 +52,7 @@ public class ControlServlet extends HttpServlet {
                 break;
             case "/insertPost":
             	insertPost(request,response);
+            
             default:          	
             	          	
                 break;
@@ -92,5 +94,7 @@ public class ControlServlet extends HttpServlet {
         postDAO.insert(newPost);
         response.sendRedirect("VideoPosts.jsp");
     }
+    
+    
  
 }

@@ -60,6 +60,8 @@
 				<td><b>Title</b></td>
 				<td><b>Description</b></td>
 				<td><b>Tags</b></td>
+				<td><b>Score</b></td>
+				<td><b>Comment</b></td>
 			   </thead>
 		
 <!-- 
@@ -82,6 +84,18 @@
 				<td><%=resultSet.getString("title")%></td>
 				<td><%=resultSet.getString("description")%></td>
 				<td><%=resultSet.getString("tags")%></td>
+				<td>
+					<select>
+						<option>-Select-</option>
+						<option>Excellent</option>
+						<option>Good</option>
+						<option>Poor</option>
+						<option>Fair</option>
+					</select>
+				</td>
+				<td>
+					<input type="text">
+				</td>
 			</tr>
 			<%
 			}

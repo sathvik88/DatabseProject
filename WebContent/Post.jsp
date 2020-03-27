@@ -12,7 +12,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-    <title>User Register</title>
+    <title>Post</title>
     <style type="text/css">
 	    <%@include file="bootstrap-4.3.1-dist/css/opensans-font.css" %>
 	    <%@include file="bootstrap-4.3.1-dist/fonts/line-awesome/css/line-awesome-font-awesome.min.css" %>

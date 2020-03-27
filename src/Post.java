@@ -4,6 +4,7 @@ public class Post {
     protected String title;
     protected String description;
     protected String tags;
+   
     
     public Post() {
     	
@@ -56,6 +57,7 @@ public class Post {
     public void setDescription(String description) {
         this.description = description;
     }
+    
     public String getTags() {
         return tags;
     }
@@ -63,5 +65,6 @@ public class Post {
     public void setTags(String tags) {
         this.tags = tags;
     }
+    
     
 }
