@@ -16,6 +16,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -25,6 +26,7 @@ import java.sql.PreparedStatement;
 public class ControlServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private UserDAO userDAO;
+    private HttpSession session = null;
  
     public void init() {
         userDAO = new UserDAO(); 
@@ -34,7 +36,8 @@ public class ControlServlet extends HttpServlet {
             throws ServletException, IOException {
         doGet(request, response);
     }
- 
+    
+    //	handles both GET and POST Requests
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getServletPath();
