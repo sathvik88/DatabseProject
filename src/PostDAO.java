@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,7 +26,8 @@ public class PostDAO extends HttpServlet {
 	private Statement statement = null;
 	private PreparedStatement preparedStatement = null;
 	private ResultSet resultSet = null;
-    public PostDAO() {
+    
+	public PostDAO() {
     
     }
     
@@ -48,14 +51,41 @@ public class PostDAO extends HttpServlet {
         }
     }
     
+    public List<Post> listAllPosts() throws SQLException {
+        List<Post> listPost = new ArrayList<Post>();        
+        String sql = "SELECT * FROM posts";      
+        connect_func();      
+        statement =  (Statement) connect.createStatement();
+        ResultSet resultSet = statement.executeQuery(sql);
+         
+        while (resultSet.next()) {
+            int id = resultSet.getInt("id");
+            String url = resultSet.getString("url");
+            String title = resultSet.getString("title");
+            String description = resultSet.getString("description");
+            String tags = resultSet.getString("tags");
+            String score = resultSet.getString("score");
+            String comment = resultSet.getString("comment");
+             
+            Post post = new Post(id,url, title, description, tags, score, comment);
+            listPost.add(post);
+        }        
+        resultSet.close();
+        statement.close();         
+        disconnect();        
+        return listPost;
+    }
+    
     public boolean insert(Post post) throws SQLException {
     	connect_func();         
-		String sql = "insert into posts(url, title, description, tags) values (?, ?, ?, ?)";
+		String sql = "insert into posts(url, title, description, tags, score, comment) values (?, ?, ?, ?, ?, ?)";
 		preparedStatement = (PreparedStatement) connect.prepareStatement(sql);
 		preparedStatement.setString(1, post.url);
 		preparedStatement.setString(2, post.title);
 		preparedStatement.setString(3, post.description);
 		preparedStatement.setString(4, post.tags);
+		preparedStatement.setString(5, post.score);
+		preparedStatement.setString(6, post.comment);
 		
 //		preparedStatement.executeUpdate();
 		
@@ -64,5 +94,54 @@ public class PostDAO extends HttpServlet {
 //        disconnect();
         return rowInserted;
     }
+    
+    public boolean update(Post post) throws SQLException {
+        String sql = "update posts set url=?, title =?,description = ?, tags = ?, score = ?, comment = ? where id = ?";
+        connect_func();
+        
+        preparedStatement = (PreparedStatement) connect.prepareStatement(sql);
+        preparedStatement.setString(1, post.url);
+        preparedStatement.setString(2, post.title);
+        preparedStatement.setString(3, post.description);
+        preparedStatement.setString(4, post.tags);
+        preparedStatement.setString(5, post.score);
+        preparedStatement.setString(6, post.comment);
+        preparedStatement.setInt(7, post.id);
+         
+        boolean rowUpdated = preparedStatement.executeUpdate() > 0;
+        preparedStatement.close();
+//        disconnect();
+        return rowUpdated;     
+    }
+    
+    public Post getPost(int id) throws SQLException {
+    	Post post = null;
+        String sql = "SELECT * FROM posts WHERE id = ?";
+         
+        connect_func();
+         
+        preparedStatement = (PreparedStatement) connect.prepareStatement(sql);
+        preparedStatement.setInt(1, id);
+         
+        ResultSet resultSet = preparedStatement.executeQuery();
+         
+        if (resultSet.next()) {
+            String url = resultSet.getString("url");
+            String title = resultSet.getString("title");
+            String description = resultSet.getString("description");
+            String tags = resultSet.getString("tags");
+            String score = resultSet.getString("score");
+            String comment = resultSet.getString("comment");
+             
+            post = new Post(id, url, title, description, tags, score, comment);
+        }
+         
+        resultSet.close();
+        statement.close();
+         
+        return post;
+    }
+    
+    
 
 }

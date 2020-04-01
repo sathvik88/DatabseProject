@@ -41,10 +41,7 @@
 			
 		<div class="container">
 			 <h2>User Posts</h2>
-			 <p>Pulling data from Comedian Database</p>  
-			 <form action="" method = "get">
-			 	<input type="text" class="form-control" name="q" placeholder="Search here"/>
-			 </form>          
+			 <p>Pulling data from Comedian Database</p>            
 			 <table class="table table-striped" align="center" cellpadding="5" cellspacing="5" border="1">
 			   <thead>
 			   	<td><b>ID</b></td>
@@ -65,14 +62,7 @@
 				Class.forName("com.mysql.jdbc.Driver");
 				conn = DriverManager.getConnection(host, "root", "glamboy99");
 				stat = conn.createStatement();
-				String query = request.getParameter("q");
-				String data;
-				if(query!=null){
-					data = "select * from posts where url like '%"+query+"%' or title like '%"+query+"%' or description like '%"+query+"%' or tags like '%"+query+"%'";
-				} else{
-					data = "select * from posts order by id desc";
-				}
-				
+				String data = "select * from posts order by id desc";
 				res = stat.executeQuery(data);
 				while(res.next()){ 
 				%>

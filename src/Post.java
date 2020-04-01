@@ -4,7 +4,8 @@ public class Post {
     protected String title;
     protected String description;
     protected String tags;
-   
+    protected String score;
+    protected String comment;
     
     public Post() {
     	
@@ -14,16 +15,18 @@ public class Post {
         this.id = id;
     }
     
-    public Post(int id, String url, String title, String description, String tags) {
-        this(url, title, description, tags);
+    public Post(int id, String url, String title, String description, String tags, String score, String comment) {
+        this(url, title, description, tags, score, comment);
         this.id = id;
     }
     
-    public Post(String url, String title, String description, String tags) {
+    public Post(String url, String title, String description, String tags, String score, String comment) {
         this.url = url;
     	this.title = title;
         this.description = description;
         this.tags = tags;
+        this.score = score;
+        this.comment = comment;
     }
     
     public int getId() {
@@ -64,6 +67,22 @@ public class Post {
     
     public void setTags(String tags) {
         this.tags = tags;
+    }
+    
+    public String getScore() {
+        return score;
+    }
+    
+    public void setScore(String score) {
+        this.score = score;
+    }
+    
+    public String getComment() {
+        return comment;
+    }
+    
+    public void setComment(String comment) {
+        this.comment = comment;
     }
     
     

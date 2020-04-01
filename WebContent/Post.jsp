@@ -46,7 +46,7 @@
 					<input type="text" name="tags" id="tags" class="input-text">
 				</div>
 				<div class="form-row-last">
-					<input type="submit" name="register" class="register" value="Register">
+					<input type="submit" name="register" class="register" value="Post">
 				</div>
 			</form>
 		</div>
@@ -56,4 +56,4 @@
 	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
 </body>
 </html>
-</html>
+

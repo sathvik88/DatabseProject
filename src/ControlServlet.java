@@ -52,9 +52,15 @@ public class ControlServlet extends HttpServlet {
                 break;
             case "/insertPost":
             	insertPost(request,response);
-            
+            	break;
+            case "/updatePost":
+            	updatePost(request,response);
+            	break;
+            case "/edit":
+            	showUpdatePost(request,response);
+            	break;
             default:          	
-            	          	
+            	listPosts(request,response);      	
                 break;
             }
         } catch (SQLException ex) {
@@ -68,6 +74,25 @@ public class ControlServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("Register.jsp");
         dispatcher.forward(request, response);
     }
+    
+    private void listPosts(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException, ServletException {
+        List<Post> listPost = postDAO.listAllPosts();
+        request.setAttribute("listPost", listPost);       
+        RequestDispatcher dispatcher = request.getRequestDispatcher("VideoPosts.jsp");       
+        dispatcher.forward(request, response);
+    }
+    
+    private void showUpdatePost(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, ServletException, IOException {
+    	  int id = Integer.parseInt(request.getParameter("id"));
+          Post existingPost = postDAO.getPost(id);
+          RequestDispatcher dispatcher = request.getRequestDispatcher("UpdatePost.jsp");
+          request.setAttribute("post", existingPost);
+          dispatcher.forward(request, response);// The forward() method works at server side, and It sends the same request and response objects to another servlet.
+ 
+    }
+    
  
 //==============================================================================================	
 //			after the data inserted, this method will be called to insert into the DB
@@ -90,10 +115,33 @@ public class ControlServlet extends HttpServlet {
         String title = request.getParameter("title");
         String description = request.getParameter("description");
         String  tags = request.getParameter("tags");
-        Post newPost = new Post(url, title, description, tags);
+        String  score = request.getParameter("score");
+        String  comment = request.getParameter("comment");
+        Post newPost = new Post(url, title, description, tags, score, comment);
         postDAO.insert(newPost);
         response.sendRedirect("VideoPosts.jsp");
     }
+    
+    private void updatePost(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        
+        System.out.println(id);
+        String url = request.getParameter("url");
+        String title = request.getParameter("title");
+        String description = request.getParameter("description");
+        String tags = request.getParameter("tags");
+        String score = request.getParameter("score");
+        String comment = request.getParameter("comment");
+        System.out.println(url);
+        
+        Post post = new Post(id,url, title, description, tags, score, comment);
+        postDAO.update(post);
+        response.sendRedirect("VideoPosts.jsp");
+    }
+    
+   
+    
     
     
  
