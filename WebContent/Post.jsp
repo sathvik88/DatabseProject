@@ -46,7 +46,7 @@
 					<input type="text" name="tags" id="tags" class="input-text">
 				</div>
 				<div class="form-row-last">
-					<input type="submit" name="register" class="register" value="Post">
+					<input type="submit" name="register" class="register" value="Post" onclick="countClocks();">
 				</div>
 			</form>
 		</div>
@@ -54,6 +54,21 @@
 	<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+	<script>
+		var click = 0;
+		function countClicks(){
+			var clickLimit = 5;
+			if(click >= clickLimit){
+				alert("This is your last post for today!");
+				return false;
+			}
+			else{
+				click++;
+				return true;
+			}
+			
+		}
+	</script>
 </body>
 </html>
 

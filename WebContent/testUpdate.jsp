@@ -7,6 +7,8 @@
 <!DOCTYPE html>
 <html>
 <p><br/></p>
+<title>Update Post</title>
+
 
 <%
 String host = "jdbc:mysql://127.0.0.1:3306/comedian";
@@ -46,11 +48,19 @@ conn = DriverManager.getConnection(host, "root", "glamboy99");
 	</div>
 	<div class="form-group">
 		<label>Score</label>
-		<input type="text" class="form-control" name="score" value='<%=res.getString("score")%>'/>
+		<label for="score">Score</label>
+			<select id = "score" name="score">
+				<option>*Select Score*</option>
+				<option value="Excellent">Excellent</option>
+				<option value="Good">Good</option>
+				<option value="Fair">Fair</option>
+				<option value="Poor">Poor</option>
+			</select>
 	</div>
 	<div class="form-group">
 		<label>Comment</label>
-		<input type="text" class="form-control" name="comment" value='<%=res.getString("comment")%>'/>
+		<textarea class="form-control" name="comment" placeholder="add a comment"></textarea>
+		
 	</div>
 	<%
 	}

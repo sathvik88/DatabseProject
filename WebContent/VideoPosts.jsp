@@ -109,7 +109,7 @@
 <!-- 			<p><a href="Home.jsp">Click here to refresh the page!</a></p> -->
 <!-- 		</form> -->
 			<p><a href="Login.jsp">Click here to Log Out!</a></p>
-			<p><a href="Search">Click here to search for videos!</a></p>
+			<p><a href="Post.jsp">Post another video!</a></p>
 	</body>
 </html>
 
