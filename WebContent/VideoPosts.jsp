@@ -85,7 +85,9 @@
 				<td><%=res.getString("tags")%></td>
 				<td><%=res.getString("score")%></td>
 				<td><%=res.getString("comment")%></td>
-				<td><a href='testUpdate.jsp?u=<%=res.getString("id")%>' class="btn btn-warning">Edit</a></td>
+				<td><a href='testUpdate.jsp?u=<%=res.getString("id")%>' class="btn btn-warning">Edit</a>
+				<a href='Delete.jsp?d=<%=res.getString("id")%>' class="btn btn-danger">Delete</a></td>
+				
 			</tr>
 			<%
 				}
