@@ -7,19 +7,13 @@
 ==============================================================================================
 -->
 
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.PreparedStatement"%>
-  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-<!-- 
-===============================================================================================================================
-									Connecting to the database to collect table information
-===============================================================================================================================
--->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 
 <!-- 
 ===============================================================================================================================
@@ -29,22 +23,154 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<title>Welcome the Home page!</title>
+	<title>Welcome the Video page!</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">      
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </head>
 	<body>
-		<center><h1>Welcome to the Posts!</h1></center>
-			
+	
+<!-- 
+===============================================================================================================================
+															NavBar
+===============================================================================================================================
+-->
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		  <a class="navbar-brand" href="Home.jsp">Comedian Database</a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
+		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		    <ul class="navbar-nav mr-auto">
+		     <li class="nav-item active">
+		        <a class="nav-link" href="Home.jsp">Home<span class="sr-only">(current)</span></a>
+		      </li>
+		      <li class="nav-item active">
+		        <a class="nav-link" href="VideoPosts.jsp">Post/View Videos<span class="sr-only"></span></a>
+		      </li>
+		      <li class="nav-item active">
+				<a class="btn btn-outline-danger" href="Login.jsp">Logout<span class="sr-only"></span></a>
+		      </li>
+		    </ul>
+		    <form class="form-inline my-2 my-lg-0" method = "get">
+		      <input class="form-control mr-sm-2" type="text" placeholder="Search" name="q" aria-label="Search">
+		      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		    </form>
+		  </div>
+		</nav>
+<!-- 
+===============================================================================================================================
+												Posting 			
+===============================================================================================================================
+-->
 		<div class="container">
 			 <h2>User Posts</h2>
-			 <p>Pulling data from Comedian Database</p>  
-			 <form action="" method = "get">
-			 	<input type="text" class="form-control" name="q" placeholder="Search here"/>
-			 </form>          
+			 <p>Pulling data from Comedian Database</p>   
+			 
+			 
+	<nav class="navbar navbar-light bg-white">
+    <div class="container-fluid gedf-wrapper">
+        <div class="row">
+            <div class="col-md-3">
+                <!-- <div class="card">
+                    <div class="card-body">
+                        <div class="h5">@User</div>
+                        <div class="h7 text-muted">Fullname: Username </div>
+                    </div>
+                </div> -->
+            </div>
+            <div class="col-md-6 gedf-main">
+
+                <!--- \\\\\\\Post-->
+                <div class="card gedf-card">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="posts-tab" data-toggle="tab" href="#posts" role="tab" aria-controls="posts" aria-selected="true">Post a Video</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content" id="myTabContent">
+                            <div class="page-content">
+								<form class="text-center border border-light p-5" action="insertPost" method="post" id="myform">	
+								    <input type="text" id="url" name ="url" class="form-control mb-4" placeholder="Youtube URL">
+									<input type="text" id="title" name ="title" class="form-control mb-4" placeholder="Youtube Title">
+									<input type="text" id="description" name ="description" class="form-control mb-4" placeholder="Description">
+									<input type="text" id="tags" name ="tags" class="form-control mb-4" placeholder="Tags">
+									<input type="submit" class="btn btn-primary" name="register" class="register" value="Post">
+								</form>
+
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Post /////-->
+                <!-- <div class="card gedf-card">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="mr-2">
+                                    <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+                                </div>
+                                <div class="ml-2">
+                                    <div class="h5 m-0">@User</div>
+                                    <div class="h7 text-muted">User Name</div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="dropdown">
+
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
+                                        <div class="h6 dropdown-header">Configuration</div>
+                                        <a class="dropdown-item" href="#">Edit</a>
+                                        <a class="dropdown-item" href="#">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                        
+
+                    </div>
+                    <div class="card-body">
+                        <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>10 min ago</div>
+                        <a class="card-link" href="#">
+                            <h5 class="card-title">Video Title Here</h5>
+                        </a>
+
+                        <p class="card-text">
+                            Video Description
+                        </p>
+                        <div>
+                            <span class="badge badge-primary">Tag1</span>
+                            <span class="badge badge-primary">Tag2</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
+                        <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
+                        <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
+                    </div>
+                </div> -->
+                <!-- Post /////-->
+        </div>
+    </div>
+			 
+<!-- 
+===============================================================================================================================
+												Table			
+===============================================================================================================================
+-->			 
+			 
+			       
 			 <table class="table table-striped" align="center" cellpadding="5" cellspacing="5" border="1">
 			   <thead>
 			   	<td><b>ID</b></td>
@@ -58,12 +184,12 @@
 			   </thead>
 			<tbody>
 				<%
-				String host = "jdbc:mysql://127.0.0.1:3306/comedian";
+				String host = "jdbc:mysql://127.0.0.1:3306/comediandb";
 				Connection conn = null;
 				Statement stat = null;
 				ResultSet res = null;
 				Class.forName("com.mysql.jdbc.Driver");
-				conn = DriverManager.getConnection(host, "root", "glamboy99");
+				conn = DriverManager.getConnection(host, "root", "pass1234");
 				stat = conn.createStatement();
 				String query = request.getParameter("q");
 				String data;
@@ -85,33 +211,15 @@
 				<td><%=res.getString("tags")%></td>
 				<td><%=res.getString("score")%></td>
 				<td><%=res.getString("comment")%></td>
-				<td class="text-center"><a href='testUpdate.jsp?u=<%=res.getString("id")%>' class="btn btn-warning">Edit</a>
+				<td><a href='testUpdate.jsp?u=<%=res.getString("id")%>' class="btn btn-warning">Edit</a>
 				<a href='Delete.jsp?d=<%=res.getString("id")%>' class="btn btn-danger">Delete</a></td>
-				
 			</tr>
 			<%
 				}
 			%>
-<!-- 
-===============================================================================================================================
-													Pulling Data from DB 
-===============================================================================================================================
--->
-			
 			
 			</div>
 		</table>
-<!-- 
-===============================================================================================================================
-										Initialize Button - linked with initializer.java
-===============================================================================================================================
--->
-<!-- 		<form action="Initializer">  -->
-<!-- 			<input id = "Initialize" type="submit" value="Initialize Database" style="color : blue"> -->
-<!-- 			<p><a href="Home.jsp">Click here to refresh the page!</a></p> -->
-<!-- 		</form> -->
-			<p><a href="Login.jsp">Click here to Log Out!</a></p>
-			<p><a href="Post.jsp">Post another video!</a></p>
 	</body>
 </html>
 
