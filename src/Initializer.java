@@ -93,6 +93,50 @@ public class Initializer extends HttpServlet {
 //==============================================================================================		
 		response.sendRedirect("Initial.jsp"); 
 	}
+	public void addToVideosTable(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException{
+		String drop = "DROP table if exists posts;";
+		connect_func();   
+		preparedStatement = (PreparedStatement) connect.prepareStatement(drop);
+		preparedStatement.executeUpdate();
+		// Creates Table
+		String sql = "CREATE TABLE posts (\r\n" + 
+				"	  id INT NOT NULL auto_increment,\r\n" + 
+				"	  url VARCHAR(500), \r\n" + 
+				"	  title VARCHAR(150),\r\n" + 
+				"	  description VARCHAR(150), \r\n" + 
+				"	  tags VARCHAR(45),\r\n" + 
+				"	  score VARCHAR(45),\r\n" + 
+				"	  comment VARCHAR(500),\r\n" + 
+				"	  PRIMARY KEY(id)\r\n" + 
+				");\r\n" + 
+				"";	
+		connect_func();   
+		preparedStatement = (PreparedStatement) connect.prepareStatement(sql);
+		preparedStatement.executeUpdate();
+		System.out.println("created table succesfully.");
+//==============================================================================================	
+//						 		Inserting 10 Default Queries into DB
+//==============================================================================================
+		String sql2 = "INSERT INTO `comedian`.`posts` (`url`, `title`, `description`, `tags`, `score`, `comment`) "
+				+ "VALUES ('<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/byVefTTeKww\" frameborder=\"0\" "
+				+ "allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', "
+				+ "'Kevin Hart House Got Robbed', 'Kevin Hart bought 9 guns and hid them in gun compartments', 'Funny', 'Excellent', 'So funny'), "
+				+ "('<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/ux8GZAtCN-M\" frameborder=\"0\" allow=\"accelerometer; "
+				+ "autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', "
+				+ "'Fluffy goes to India', 'Happy throwback Thursday from 2014!', 'Comedy', 'Good','Love this guy!'), "
+				+ "('<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/goMsCPQYhlQ\" frameborder=\"0\" allow=\"accelerometer; "
+				+ "autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', "
+				+ "'Louis Vuitton', 'Do not try to sell a Louis Vuitton bag to an Indian!', 'Russell, Funny', 'Excellent', 'Awesome'); \r\n" +
+				";";
+		preparedStatement = (PreparedStatement) connect.prepareStatement(sql2);
+		preparedStatement.executeUpdate();
+		System.out.println("Posts created succesfully.");
+		connect.close();
+//==============================================================================================	
+// 						Refreshes the home page showing initialized table 
+//==============================================================================================		
+		//response.sendRedirect("Initial.jsp"); 
+	}
 //==============================================================================================	
 //										Get Request
 //==============================================================================================
@@ -100,6 +144,7 @@ public class Initializer extends HttpServlet {
 		Initializer = new Initializer();
 		try {
 			addToUsersTable(request, response);
+			addToVideosTable(request, response);
 		}catch (Exception e) {
 			System.out.println(e);
 		}
