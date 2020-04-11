@@ -33,7 +33,7 @@
  <table class="table table-striped" align="center" cellpadding="5" cellspacing="5" border="1">
 			   <thead>
 			   	<td><b>ID</b></td>
-			   	<td><b>Comedian</b></td>
+			   	<td><b>Videos</b></td>
 				<td><b>Score</b></td>
 			   </thead>
 			<tbody>
@@ -41,7 +41,7 @@
 			try {
 			connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
 			statement = connection.createStatement();
-			String sql = "SELECT * FROM comedian.posts where score = 'Excellent'"; // change to match DB
+			String sql = "SELECT * FROM comedian.posts where score = 'Poor'"; // change to match DB
 			
 			resultSet = statement.executeQuery(sql);
 			while (resultSet.next()) {
@@ -49,7 +49,7 @@
 			
 			<tr bgcolor="#FFFFFF">
 				<td><%=resultSet.getString("id")%></td>
-				<td><%=resultSet.getString("comedian")%></td>
+				<td><%=resultSet.getString("url")%></td>
 				<td><%=resultSet.getString("score")%></td>
 				
 			</tr>

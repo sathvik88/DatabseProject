@@ -140,6 +140,9 @@
 		<form action="Initializer"> 
 			<input  class="btn btn-outline-primary" id = "Initialize" type="submit" value="Initialize Database">
 		</form>
+		<a href="WhosCool.jsp">Who's Cool?</a><br>
+		<a href="AllTags.jsp">All the tags</a><br>
+		<a href="PoorReviews.jsp">Poor reviews</a>
 	</body>
 </html>
 

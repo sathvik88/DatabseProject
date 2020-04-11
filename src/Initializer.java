@@ -127,7 +127,9 @@ public class Initializer extends HttpServlet {
 				+ "'Fluffy goes to India', 'Happy throwback Thursday from 2014!', 'Comedy', 'Good','Love this guy!'), "
 				+ "('Russell Peters', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/goMsCPQYhlQ\" frameborder=\"0\" allow=\"accelerometer; "
 				+ "autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', "
-				+ "'Louis Vuitton', 'Do not try to sell a Louis Vuitton bag to an Indian!', 'Russell, Funny', 'Excellent', 'Awesome'); \r\n" +
+				+ "'Louis Vuitton', 'Do not try to sell a Louis Vuitton bag to an Indian!', 'Russell, Funny', 'Excellent', 'Awesome'), "
+				+ "('Amy Schumer','<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/WggRodqiaGU\" frameborder=\"0\" allow=\"accelerometer; autoplay; "
+				+ "encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>','STAND UP Live at Apollo 2019','Amy Schumer Women Who Kill','Cool, Nice','Poor','Boring'); \r\n" +
 				";";
 		preparedStatement = (PreparedStatement) connect.prepareStatement(sql2);
 		preparedStatement.executeUpdate();
