@@ -60,6 +60,7 @@ public class PostDAO extends HttpServlet {
          
         while (resultSet.next()) {
             int id = resultSet.getInt("id");
+            String comedian = resultSet.getString("comedian");
             String url = resultSet.getString("url");
             String title = resultSet.getString("title");
             String description = resultSet.getString("description");
@@ -67,7 +68,7 @@ public class PostDAO extends HttpServlet {
             String score = resultSet.getString("score");
             String comment = resultSet.getString("comment");
              
-            Post post = new Post(id,url, title, description, tags, score, comment);
+            Post post = new Post(id,comedian,url, title, description, tags, score, comment);
             listPost.add(post);
         }        
         resultSet.close();
@@ -78,14 +79,15 @@ public class PostDAO extends HttpServlet {
     
     public boolean insert(Post post) throws SQLException {
     	connect_func();         
-		String sql = "insert into posts(url, title, description, tags, score, comment) values (?, ?, ?, ?, ?, ?)";
+		String sql = "insert into posts(comedian, url, title, description, tags, score, comment) values (?, ?, ?, ?, ?, ?, ?)";
 		preparedStatement = (PreparedStatement) connect.prepareStatement(sql);
-		preparedStatement.setString(1, post.url);
-		preparedStatement.setString(2, post.title);
-		preparedStatement.setString(3, post.description);
-		preparedStatement.setString(4, post.tags);
-		preparedStatement.setString(5, post.score);
-		preparedStatement.setString(6, post.comment);
+		preparedStatement.setString(1, post.comedian);
+		preparedStatement.setString(2, post.url);
+		preparedStatement.setString(3, post.title);
+		preparedStatement.setString(4, post.description);
+		preparedStatement.setString(5, post.tags);
+		preparedStatement.setString(6, post.score);
+		preparedStatement.setString(7, post.comment);
 		
 //		preparedStatement.executeUpdate();
 		
@@ -96,17 +98,18 @@ public class PostDAO extends HttpServlet {
     }
     
     public boolean update(Post post) throws SQLException {
-        String sql = "update posts set url=?, title =?,description = ?, tags = ?, score = ?, comment = ? where id = ?";
+        String sql = "update posts set comedian=?, url=?, title =?,description = ?, tags = ?, score = ?, comment = ? where id = ?";
         connect_func();
         
         preparedStatement = (PreparedStatement) connect.prepareStatement(sql);
-        preparedStatement.setString(1, post.url);
-        preparedStatement.setString(2, post.title);
-        preparedStatement.setString(3, post.description);
-        preparedStatement.setString(4, post.tags);
-        preparedStatement.setString(5, post.score);
-        preparedStatement.setString(6, post.comment);
-        preparedStatement.setInt(7, post.id);
+        preparedStatement.setString(1, post.comedian);
+        preparedStatement.setString(2, post.url);
+        preparedStatement.setString(3, post.title);
+        preparedStatement.setString(4, post.description);
+        preparedStatement.setString(5, post.tags);
+        preparedStatement.setString(6, post.score);
+        preparedStatement.setString(7, post.comment);
+        preparedStatement.setInt(8, post.id);
          
         boolean rowUpdated = preparedStatement.executeUpdate() > 0;
         preparedStatement.close();
@@ -126,6 +129,7 @@ public class PostDAO extends HttpServlet {
         ResultSet resultSet = preparedStatement.executeQuery();
          
         if (resultSet.next()) {
+        	String comedian = resultSet.getString("comedian");
             String url = resultSet.getString("url");
             String title = resultSet.getString("title");
             String description = resultSet.getString("description");
@@ -133,7 +137,7 @@ public class PostDAO extends HttpServlet {
             String score = resultSet.getString("score");
             String comment = resultSet.getString("comment");
              
-            post = new Post(id, url, title, description, tags, score, comment);
+            post = new Post(id, comedian, url, title, description, tags, score, comment);
         }
          
         resultSet.close();

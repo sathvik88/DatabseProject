@@ -1,5 +1,6 @@
 public class Post {
 	protected int id;
+	protected String comedian;
     protected String url;
     protected String title;
     protected String description;
@@ -15,13 +16,14 @@ public class Post {
         this.id = id;
     }
     
-    public Post(int id, String url, String title, String description, String tags, String score, String comment) {
-        this(url, title, description, tags, score, comment);
+    public Post(int id, String comedian, String url, String title, String description, String tags, String score, String comment) {
+        this(comedian, url, title, description, tags, score, comment);
         this.id = id;
     }
     
-    public Post(String url, String title, String description, String tags, String score, String comment) {
-        this.url = url;
+    public Post(String comedian, String url, String title, String description, String tags, String score, String comment) {
+    	this.comedian = comedian;
+    	this.url = url;
     	this.title = title;
         this.description = description;
         this.tags = tags;
@@ -35,6 +37,13 @@ public class Post {
  
     public void setId(int id) {
         this.id = id;
+    }
+    public String getComedian() {
+        return comedian;
+    }
+    
+    public void setComedian(String comedian) {
+        this.comedian = comedian;
     }
     
     public String getUrl() {

@@ -100,12 +100,13 @@
                     <div class="card-body">
                         <div class="tab-content" id="myTabContent">
                             <div class="page-content">
-								<form class="text-center border border-light p-5" action="insertPost" method="post" id="myform">	
+								<form class="text-center border border-light p-5" action="insertPost" method="post" id="myform">
+									<input type="text" id="comedian" name ="comedian" class="form-control mb-4" placeholder="Comedian name">	
 								    <input type="text" id="url" name ="url" class="form-control mb-4" placeholder="Youtube URL">
 									<input type="text" id="title" name ="title" class="form-control mb-4" placeholder="Youtube Title">
 									<input type="text" id="description" name ="description" class="form-control mb-4" placeholder="Description">
 									<input type="text" id="tags" name ="tags" class="form-control mb-4" placeholder="Tags">
-									<input type="submit" class="btn btn-primary" name="register" class="register" value="Post">
+									<input type="submit" onclick="alert('Only 5 posts per day!');" class="btn btn-primary" name="register" class="register" value="Post">
 								</form>
 
                         </div>
@@ -174,6 +175,7 @@
 			 <table class="table table-striped" align="center" cellpadding="5" cellspacing="5" border="1">
 			   <thead>
 			   	<td><b>ID</b></td>
+			   	<td><b>Comedian</b></td>
 			    <td><b>URL</b></td>
 				<td><b>Title</b></td>
 				<td><b>Description</b></td>
@@ -184,17 +186,17 @@
 			   </thead>
 			<tbody>
 				<%
-				String host = "jdbc:mysql://127.0.0.1:3306/comediandb";
+				String host = "jdbc:mysql://127.0.0.1:3306/comedian";
 				Connection conn = null;
 				Statement stat = null;
 				ResultSet res = null;
 				Class.forName("com.mysql.jdbc.Driver");
-				conn = DriverManager.getConnection(host, "root", "pass1234");
+				conn = DriverManager.getConnection(host, "root", "glamboy99");
 				stat = conn.createStatement();
 				String query = request.getParameter("q");
 				String data;
 				if(query!=null){
-					data = "select * from posts where url like '%"+query+"%' or title like '%"+query+"%' or description like '%"+query+"%' or tags like '%"+query+"%'";
+					data = "select * from posts where url like '%"+query+"%' or title like '%"+query+"%' or description like '%"+query+"%' or tags like '%"+query+"%' or comedian like '%"+query+"%'";
 				} else{
 					data = "select * from posts order by id desc";
 				}
@@ -205,6 +207,7 @@
 			</tbody>
 			<tr bgcolor="#FFFFFF">
 				<td><%=res.getString("id")%></td>
+				<td><%=res.getString("comedian")%></td>
 				<td><%=res.getString("url")%></td>
 				<td><%=res.getString("title")%></td>
 				<td><%=res.getString("description")%></td>

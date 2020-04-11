@@ -111,13 +111,14 @@ public class ControlServlet extends HttpServlet {
     }
     private void insertPost(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
+        String comedian = request.getParameter("comedian");
         String url = request.getParameter("url");
         String title = request.getParameter("title");
         String description = request.getParameter("description");
         String  tags = request.getParameter("tags");
         String  score = request.getParameter("score");
         String  comment = request.getParameter("comment");
-        Post newPost = new Post(url, title, description, tags, score, comment);
+        Post newPost = new Post(comedian, url, title, description, tags, score, comment);
         postDAO.insert(newPost);
         response.sendRedirect("VideoPosts.jsp");
     }
@@ -127,6 +128,7 @@ public class ControlServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         
         System.out.println(id);
+        String comedian = request.getParameter("comedian");
         String url = request.getParameter("url");
         String title = request.getParameter("title");
         String description = request.getParameter("description");
@@ -135,7 +137,7 @@ public class ControlServlet extends HttpServlet {
         String comment = request.getParameter("comment");
         System.out.println(url);
         
-        Post post = new Post(id,url, title, description, tags, score, comment);
+        Post post = new Post(id,comedian, url, title, description, tags, score, comment);
         postDAO.update(post);
         response.sendRedirect("VideoPosts.jsp");
     }

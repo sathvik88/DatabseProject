@@ -101,6 +101,7 @@ public class Initializer extends HttpServlet {
 		// Creates Table
 		String sql = "CREATE TABLE posts (\r\n" + 
 				"	  id INT NOT NULL auto_increment,\r\n" + 
+				"	  comedian VARCHAR(60), \r\n" +
 				"	  url VARCHAR(500), \r\n" + 
 				"	  title VARCHAR(150),\r\n" + 
 				"	  description VARCHAR(150), \r\n" + 
@@ -117,14 +118,14 @@ public class Initializer extends HttpServlet {
 //==============================================================================================	
 //						 		Inserting 10 Default Queries into DB
 //==============================================================================================
-		String sql2 = "INSERT INTO `comedian`.`posts` (`url`, `title`, `description`, `tags`, `score`, `comment`) "
-				+ "VALUES ('<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/byVefTTeKww\" frameborder=\"0\" "
+		String sql2 = "INSERT INTO `comedian`.`posts` (`comedian`, `url`, `title`, `description`, `tags`, `score`, `comment`) "
+				+ "VALUES ('Kevin Hart', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/byVefTTeKww\" frameborder=\"0\" "
 				+ "allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', "
 				+ "'Kevin Hart House Got Robbed', 'Kevin Hart bought 9 guns and hid them in gun compartments', 'Funny', 'Excellent', 'So funny'), "
-				+ "('<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/ux8GZAtCN-M\" frameborder=\"0\" allow=\"accelerometer; "
+				+ "('Gabriel Iglesias', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/ux8GZAtCN-M\" frameborder=\"0\" allow=\"accelerometer; "
 				+ "autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', "
 				+ "'Fluffy goes to India', 'Happy throwback Thursday from 2014!', 'Comedy', 'Good','Love this guy!'), "
-				+ "('<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/goMsCPQYhlQ\" frameborder=\"0\" allow=\"accelerometer; "
+				+ "('Russell Peters', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/goMsCPQYhlQ\" frameborder=\"0\" allow=\"accelerometer; "
 				+ "autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', "
 				+ "'Louis Vuitton', 'Do not try to sell a Louis Vuitton bag to an Indian!', 'Russell, Funny', 'Excellent', 'Awesome'); \r\n" +
 				";";

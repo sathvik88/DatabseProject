@@ -21,13 +21,13 @@
 </head>
 
 <%
-String host = "jdbc:mysql://127.0.0.1:3306/comediandb";
+String host = "jdbc:mysql://127.0.0.1:3306/comedian";
 Connection conn = null;
 Statement stat = null;
 ResultSet res = null;
 PreparedStatement stmt = null;
 Class.forName("com.mysql.jdbc.Driver").newInstance();
-conn = DriverManager.getConnection(host, "root", "pass1234");
+conn = DriverManager.getConnection(host, "root", "glamboy99");
 %>
 
 <!-- 
@@ -81,6 +81,10 @@ conn = DriverManager.getConnection(host, "root", "pass1234");
 	%>
 	<input type="hidden" name="id" value='<%=res.getString("id")%>'/>
 	<div class="form-group">
+		<label>Comedian</label>
+		<input type="text" class="form-control" name="comedian" value='<%=res.getString("comedian")%>'/>
+	</div>
+	<div class="form-group">
 		<label>URL</label>
 		<input type="text" class="form-control" name="url" value='<%=res.getString("url")%>'/>
 	</div>
@@ -119,14 +123,15 @@ conn = DriverManager.getConnection(host, "root", "pass1234");
 </form>
 <%
 String a = request.getParameter("id");
-String b = request.getParameter("url");
-String c = request.getParameter("title");
-String d = request.getParameter("description");
-String e = request.getParameter("tags");
-String f = request.getParameter("score");
-String g = request.getParameter("comment");
-if(a!=null && b!=null && c!=null && d!=null && e!=null && f!=null && g!=null){
-	String query = "update posts set url=?, title=?, description=?, tags=?, score=?, comment=? where id='"+a+"'";
+String b = request.getParameter("comedian");
+String c = request.getParameter("url");
+String d = request.getParameter("title");
+String e = request.getParameter("description");
+String f = request.getParameter("tags");
+String g = request.getParameter("score");
+String h = request.getParameter("comment");
+if(a!=null && b!=null && c!=null && d!=null && e!=null && f!=null && g!=null && h!=null){
+	String query = "update posts set comedian=?, url=?, title=?, description=?, tags=?, score=?, comment=? where id='"+a+"'";
 	stmt = conn.prepareStatement(query);
 	stmt.setString(1,b);
 	stmt.setString(2,c);
@@ -134,6 +139,7 @@ if(a!=null && b!=null && c!=null && d!=null && e!=null && f!=null && g!=null){
 	stmt.setString(4,e);
 	stmt.setString(5,f);
 	stmt.setString(6,g);
+	stmt.setString(7,h);
 	stmt.executeUpdate();
 	response.sendRedirect("VideoPosts.jsp");
 }

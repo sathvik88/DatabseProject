@@ -18,6 +18,7 @@
 	    <%@include file="bootstrap-4.3.1-dist/fonts/line-awesome/css/line-awesome-font-awesome.min.css" %>
 	    <%@include file="bootstrap-4.3.1-dist/css/style.css" %>
 	</style>
+	
 	<script src="bootstrap/js/jquery.js"></script>
 	<script src="bootstrap-4.3.1-dist/js/bootstrap.js"></script>
 </head>
