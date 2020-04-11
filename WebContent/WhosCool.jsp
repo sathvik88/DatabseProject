@@ -35,6 +35,7 @@
 			   	<td><b>ID</b></td>
 			   	<td><b>Comedian</b></td>
 				<td><b>Score</b></td>
+				<td><b>Videos</b></td>
 			   </thead>
 			<tbody>
 				<%
@@ -42,7 +43,13 @@
 			connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
 			statement = connection.createStatement();
 			String sql = "SELECT * FROM comedian.posts where score = 'Excellent'"; // change to match DB
-			
+			String query = request.getParameter("q");
+			String data;
+			if(query!=null){
+				data = "select * from posts where comedian like '%"+query+"%'";
+			} else{
+				data = "select * from posts order by id desc";
+			}
 			resultSet = statement.executeQuery(sql);
 			while (resultSet.next()) {
 			%>
@@ -51,6 +58,10 @@
 				<td><%=resultSet.getString("id")%></td>
 				<td><%=resultSet.getString("comedian")%></td>
 				<td><%=resultSet.getString("score")%></td>
+				<td><form class="form-inline my-2 my-lg-0" action="VideoPosts.jsp" method = "get">
+		      <input class="form-control mr-sm-2" type="text" value='<%=resultSet.getString("comedian")%>' name="q" aria-label="Search">
+		      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Go</button>
+		    </form></td>
 				
 			</tr>
 			<%
