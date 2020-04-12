@@ -41,7 +41,7 @@ public class Initializer extends HttpServlet {
                 throw new SQLException(e);
             }
             connect = (Connection) DriverManager
-  			      .getConnection("jdbc:mysql://127.0.0.1:3306/comediandb?" // Change to match DB
+  			      .getConnection("jdbc:mysql://127.0.0.1:3306/comediandb?" // Change to match DB also change default youtube db 
   			          + "user=root&password=pass1234");
             System.out.println(connect);
         }
