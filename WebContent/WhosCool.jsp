@@ -9,9 +9,9 @@
 <%
 	String driverName = "com.mysql.jdbc.Driver";
 	String connectionUrl = "jdbc:mysql://localhost:3306/";
-	String dbName = "comedian"; // change schema name to match, also change on line 76
+	String dbName = "comediandb"; // change schema name to match, also change on line 76
 	String userId = "root";
-	String password = "glamboy99";
+	String password = "pass1234";
 	
 	try {
 		Class.forName(driverName);
@@ -42,7 +42,7 @@
 			try {
 			connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
 			statement = connection.createStatement();
-			String sql = "SELECT * FROM comedian.posts where score = 'Excellent'"; // change to match DB
+			String sql = "SELECT * FROM comediandb.posts where score = 'Excellent'"; // change to match DB
 			String query = request.getParameter("q");
 			String data;
 			if(query!=null){

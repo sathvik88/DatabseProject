@@ -186,12 +186,12 @@
 			   </thead>
 			<tbody>
 				<%
-				String host = "jdbc:mysql://127.0.0.1:3306/comedian";
+				String host = "jdbc:mysql://127.0.0.1:3306/comediandb";
 				Connection conn = null;
 				Statement stat = null;
 				ResultSet res = null;
 				Class.forName("com.mysql.jdbc.Driver");
-				conn = DriverManager.getConnection(host, "root", "glamboy99");
+				conn = DriverManager.getConnection(host, "root", "pass1234");
 				stat = conn.createStatement();
 				String query = request.getParameter("q");
 				String data;

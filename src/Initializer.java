@@ -41,8 +41,8 @@ public class Initializer extends HttpServlet {
                 throw new SQLException(e);
             }
             connect = (Connection) DriverManager
-  			      .getConnection("jdbc:mysql://127.0.0.1:3306/comedian?" // Change to match DB
-  			          + "user=root&password=glamboy99");
+  			      .getConnection("jdbc:mysql://127.0.0.1:3306/comediandb?" // Change to match DB
+  			          + "user=root&password=pass1234");
             System.out.println(connect);
         }
 	}
@@ -118,7 +118,7 @@ public class Initializer extends HttpServlet {
 //==============================================================================================	
 //						 		Inserting 10 Default Queries into DB
 //==============================================================================================
-		String sql2 = "INSERT INTO `comedian`.`posts` (`comedian`, `url`, `title`, `description`, `tags`, `score`, `comment`) "
+		String sql2 = "INSERT INTO `comedian`.`posts` (`comedian`, `url`, `title`, `description`, `tags`, `score`, `comment`) " // Change comedian to match your db name 
 				+ "VALUES ('Kevin Hart', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/byVefTTeKww\" frameborder=\"0\" "
 				+ "allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', "
 				+ "'Kevin Hart House Got Robbed', 'Kevin Hart bought 9 guns and hid them in gun compartments', 'Funny', 'Excellent', 'So funny'), "

@@ -39,8 +39,8 @@ public class PostDAO extends HttpServlet {
                 throw new SQLException(e);
             }
             connect = (Connection) DriverManager
-  			      .getConnection("jdbc:mysql://127.0.0.1:3306/comedian?" // change schema name to match also on line 
-  			          + "user=root&password=glamboy99");
+  			      .getConnection("jdbc:mysql://127.0.0.1:3306/comediandb?" // change schema name to match also on line 
+  			          + "user=root&password=pass1234");
             System.out.println(connect);
         }
     }

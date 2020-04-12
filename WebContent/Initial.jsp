@@ -19,9 +19,9 @@
 <%
 	String driverName = "com.mysql.jdbc.Driver";
 	String connectionUrl = "jdbc:mysql://localhost:3306/";
-	String dbName = "comedian"; // change schema name to match, also change on line 62
+	String dbName = "comediandb"; // change schema name to match, also change all the tables below
 	String userId = "root";
-	String password = "glamboy99";
+	String password = "pass1234";
 	
 	try {
 		Class.forName(driverName);
@@ -74,6 +74,9 @@
 		      <li class="nav-item active">
 		        <a class="nav-link" href="VideoPosts.jsp">Post/View Videos<span class="sr-only"></span></a>
 		      </li>
+		      <form action="Initializer"> 
+				<input  class="btn btn-outline-primary" id = "Initialize" type="submit" value="Initialize Database">
+			  </form>
 		      <li class="nav-item active">
 		        <a class="btn btn-outline-danger" href="Login.jsp">Logout<span class="sr-only"></span></a>
 		      </li>
@@ -82,11 +85,7 @@
 		</nav>	
 			
 			
-		<center><h1>Welcome root - Initialize Database</h1></center>
-			
-			
-			
-			
+		<center><h1>Welcome root user!</h1></center>	
 		<div class="container">
 			 <h2>User Accounts</h2>
 			 <p>Pulling data from Comedian Database</p>            
@@ -105,11 +104,16 @@
 													Pulling Data from DB 
 ===============================================================================================================================
 -->
+<!-- 
+===============================================================================================================================
+													User Info Table
+===============================================================================================================================
+-->
 			<%
 			try {
 			connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
 			statement = connection.createStatement();
-			String sql = "SELECT * FROM comedian.users"; // change to match DB
+			String sql = "SELECT * FROM comediandb.users"; // change to match DB
 			
 			resultSet = statement.executeQuery(sql);
 			while (resultSet.next()) {
@@ -134,15 +138,140 @@
 		</table>
 <!-- 
 ===============================================================================================================================
-										Initialize Button - linked with initializer.java
+													Poor Reviews Table 
 ===============================================================================================================================
--->
-		<form action="Initializer"> 
-			<input  class="btn btn-outline-primary" id = "Initialize" type="submit" value="Initialize Database">
-		</form>
-		<a href="WhosCool.jsp">Who's Cool?</a><br>
-		<a href="AllTags.jsp">All the tags</a><br>
-		<a href="PoorReviews.jsp">Poor reviews</a>
+-->		
+		<h2>Poor Reviews👎</h2>
+		<p>Pulling data from Comedian Database</p> 
+		<table class="table table-striped" align="center" cellpadding="5" cellspacing="5" border="1">
+			   <thead>
+			   	<td><b>ID</b></td>
+			   	<td><b>Videos</b></td>
+				<td><b>Score</b></td>
+			   </thead>
+			<tbody>
+				<%
+			try {
+			connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
+			statement = connection.createStatement();
+			String sql = "SELECT * FROM comediandb.posts where score = 'Poor'"; // change to match DB
+			
+			resultSet = statement.executeQuery(sql);
+			while (resultSet.next()) {
+			%>
+			
+			<tr bgcolor="#FFFFFF">
+				<td><%=resultSet.getString("id")%></td>
+				<td><%=resultSet.getString("url")%></td>
+				<td><%=resultSet.getString("score")%></td>
+				
+			</tr>
+			<%
+			}
+			
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			%>
+			</div>
+		</table>
+<!-- 
+===============================================================================================================================
+													All Tags Table 
+===============================================================================================================================
+-->			
+		<h2>All Tags</h2>
+		<p>Pulling data from Comedian Database</p> 
+		<table class="table table-striped" align="center" cellpadding="5" cellspacing="5" border="1">
+			   <thead>
+			   	<td><b>ID</b></td>
+			   	<td><b>Tags</b></td>
+				
+			   </thead>
+			<tbody>
+				<%
+			try {
+			connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
+			statement = connection.createStatement();
+			String sql = "SELECT * FROM comediandb.posts"; // change to match DB
+			
+			resultSet = statement.executeQuery(sql);
+			while (resultSet.next()) {
+			%>
+			
+			<tr bgcolor="#FFFFFF">
+				<td><%=resultSet.getString("id")%></td>
+				<td><%=resultSet.getString("tags")%></td>
+				
+				
+			</tr>
+			<%
+			}
+			
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			%>
+			</div>
+		</table>
+<!-- 
+===============================================================================================================================
+													Who's Cool Table 
+===============================================================================================================================
+-->	
+		<h2>Who's Cool😎</h2>
+		<p>Pulling data from Comedian Database</p> 
+		<table class="table table-striped" align="center" cellpadding="5" cellspacing="5" border="1">
+		   <thead>
+			   	<td><b>ID</b></td>
+			   	<td><b>Comedian</b></td>
+				<td><b>Score</b></td>
+				<td><b>Videos</b></td>
+		   </thead>
+		<tbody>
+			<%
+		try {
+		connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
+		statement = connection.createStatement();
+		String sql = "SELECT * FROM comediandb.posts where score = 'Excellent'"; // change to match DB
+		String query = request.getParameter("q");
+		String data;
+		if(query!=null){
+			data = "select * from posts where comedian like '%"+query+"%'";
+		} else{
+			data = "select * from posts order by id desc";
+		}
+		resultSet = statement.executeQuery(sql);
+		while (resultSet.next()) {
+		%>
+		
+		<tr bgcolor="#FFFFFF">
+			<td><%=resultSet.getString("id")%></td>
+			<td><%=resultSet.getString("comedian")%></td>
+			<td><%=resultSet.getString("score")%></td>
+			<td><form class="form-inline my-2 my-lg-0" action="VideoPosts.jsp" method = "get">
+	      <input class="form-control mr-sm-2" type="text" value='<%=resultSet.getString("comedian")%>' name="q" aria-label="Search">
+	      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Go</button>
+	    </form></td>
+			
+		</tr>
+		<%
+		}
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		%>
+		</table>
+<!-- 
+===============================================================================================================================
+													
+===============================================================================================================================
+-->			
+
+
+
+			
 	</body>
 </html>
 

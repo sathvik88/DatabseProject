@@ -21,13 +21,13 @@
 </head>
 
 <%
-String host = "jdbc:mysql://127.0.0.1:3306/comedian";
+String host = "jdbc:mysql://127.0.0.1:3306/comediandb";
 Connection conn = null;
 Statement stat = null;
 ResultSet res = null;
 PreparedStatement stmt = null;
 Class.forName("com.mysql.jdbc.Driver").newInstance();
-conn = DriverManager.getConnection(host, "root", "glamboy99");
+conn = DriverManager.getConnection(host, "root", "pass1234");
 %>
 
 <!-- 
