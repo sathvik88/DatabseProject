@@ -19,9 +19,9 @@
 <%
 	String driverName = "com.mysql.jdbc.Driver";
 	String connectionUrl = "jdbc:mysql://localhost:3306/";
-	String dbName = "comediandb"; // change schema name to match, also change all the tables below
+	String dbName = "comedian"; // change schema name to match, also change all the tables below
 	String userId = "root";
-	String password = "pass1234";
+	String password = "glamboy99";
 	
 	try {
 		Class.forName(driverName);
@@ -113,7 +113,7 @@
 			try {
 			connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
 			statement = connection.createStatement();
-			String sql = "SELECT * FROM comediandb.users"; // change to match DB
+			String sql = "SELECT * FROM comedian.users"; // change to match DB
 			
 			resultSet = statement.executeQuery(sql);
 			while (resultSet.next()) {
@@ -154,7 +154,7 @@
 			try {
 			connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
 			statement = connection.createStatement();
-			String sql = "SELECT * FROM comediandb.posts where score = 'Poor'"; // change to match DB
+			String sql = "SELECT * FROM comedian.posts where score = 'Poor'"; // change to match DB
 			
 			resultSet = statement.executeQuery(sql);
 			while (resultSet.next()) {
@@ -193,7 +193,7 @@
 			try {
 			connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
 			statement = connection.createStatement();
-			String sql = "SELECT * FROM comediandb.posts"; // change to match DB
+			String sql = "SELECT * FROM comedian.posts"; // change to match DB
 			
 			resultSet = statement.executeQuery(sql);
 			while (resultSet.next()) {
@@ -233,7 +233,7 @@
 		try {
 		connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
 		statement = connection.createStatement();
-		String sql = "SELECT * FROM comediandb.posts where score = 'Excellent'"; // change to match DB
+		String sql = "SELECT * FROM comedian.posts where score = 'Excellent'"; // change to match DB
 		String query = request.getParameter("q");
 		String data;
 		if(query!=null){
@@ -265,13 +265,94 @@
 		</table>
 <!-- 
 ===============================================================================================================================
-													
+													Most Recent Record Table 
 ===============================================================================================================================
--->			
-
-
-
+-->
+	<h2>Posts made today </h2>
+		<p>Pulling data from Comedian Database</p> 
+		<table class="table table-striped" align="center" cellpadding="5" cellspacing="5" border="1">
+			   <thead>
+			   	<td><b>ID</b></td>
+			   	<td><b>Comedian</b></td>
+			    <td><b>URL</b></td>
+				<td><b>Title</b></td>
+				<td><b>Description</b></td>
+				<td><b>Tags</b></td>
+				<td><b>Score</b></td>
+				<td><b>Comment</b></td>
+				<td><b>Time</b></td>
+				
+			   </thead>
+			<tbody>
+				<%
+			try {
+			connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
+			statement = connection.createStatement();
+			String sql = "SELECT * FROM comedian.posts WHERE created BETWEEN '2020-04-11 00:00:00' AND '2020-04-12 15:51:45'"; // change to match DB
 			
+			resultSet = statement.executeQuery(sql);
+			while (resultSet.next()) {
+			%>
+			
+			<tr bgcolor="#FFFFFF">
+				<td><%=resultSet.getString("id")%></td>
+				<td><%=resultSet.getString("comedian")%></td>
+				<td><%=resultSet.getString("url")%></td>
+				<td><%=resultSet.getString("title")%></td>
+				<td><%=resultSet.getString("description")%></td>
+				<td><%=resultSet.getString("tags")%></td>
+				<td><%=resultSet.getString("score")%></td>
+				<td><%=resultSet.getString("comment")%></td>
+				<td><%=resultSet.getString("created")%></td>
+			</tr>
+			<%
+			}
+			
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			%>
+			</div>
+		</table>	
+
+<!-- 
+===============================================================================================================================
+													Top 3 comedians Table 
+===============================================================================================================================
+-->
+	<h2>Top 3 Comedians </h2>
+		<p>Pulling data from Comedian Database</p> 
+		<table class="table table-striped" align="center" cellpadding="5" cellspacing="5" border="1">
+			   <thead>
+			   	
+			   	<td><b>Comedian</b></td>
+				
+			   </thead>
+			<tbody>
+				<%
+			try {
+			connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
+			statement = connection.createStatement();
+			String sql = "Select comedian, COUNT(comedian) AS value_occurrence FROM posts GROUP BY comedian ORDER BY value_occurrence DESC" 
+					+" LIMIT 3"; // change to match DB
+			
+			resultSet = statement.executeQuery(sql);
+			while (resultSet.next()) {
+			%>
+			
+			<tr bgcolor="#FFFFFF">
+				<td><%=resultSet.getString("comedian")%></td>
+			</tr>
+			<%
+			}
+			
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			%>
+			</div>
+		</table>
+		
 	</body>
 </html>
 
