@@ -352,6 +352,43 @@
 			%>
 			</div>
 		</table>
+		<!-- 
+===============================================================================================================================
+													Top 3 comedians Table 
+===============================================================================================================================
+-->
+	<h2>Who's Hot </h2>
+		<p>Pulling data from Comedian Database</p> 
+		<table class="table table-striped" align="center" cellpadding="5" cellspacing="5" border="1">
+			   <thead>
+			   	
+			   	<td><b>Comedian</b></td>
+				
+			   </thead>
+			<tbody>
+				<%
+			try {
+			connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
+			statement = connection.createStatement();
+			String sql = "Select comedian, COUNT(comedian) AS value_occurrence FROM reviews GROUP BY comedian ORDER BY value_occurrence DESC" 
+					+" LIMIT 3"; // change to match DB
+			
+			resultSet = statement.executeQuery(sql);
+			while (resultSet.next()) {
+			%>
+			
+			<tr bgcolor="#FFFFFF">
+				<td><%=resultSet.getString("comedian")%></td>
+			</tr>
+			<%
+			}
+			
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			%>
+			</div>
+		</table>
 		
 	</body>
 </html>

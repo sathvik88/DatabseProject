@@ -182,16 +182,17 @@
 				<td><b>Tags</b></td>
 				<td><b>Score</b></td>
 				<td><b>Comment</b></td>
+				<td><b>Time</b></td>
 				<td><b>Action</b></td>
 			   </thead>
 			<tbody>
 				<%
-				String host = "jdbc:mysql://127.0.0.1:3306/comediandb";
+				String host = "jdbc:mysql://127.0.0.1:3306/comedian";
 				Connection conn = null;
 				Statement stat = null;
 				ResultSet res = null;
 				Class.forName("com.mysql.jdbc.Driver");
-				conn = DriverManager.getConnection(host, "root", "pass1234");
+				conn = DriverManager.getConnection(host, "root", "glamboy99");
 				stat = conn.createStatement();
 				String query = request.getParameter("q");
 				String data;
@@ -214,7 +215,8 @@
 				<td><%=res.getString("tags")%></td>
 				<td><%=res.getString("score")%></td>
 				<td><%=res.getString("comment")%></td>
-				<td><a href='testUpdate.jsp?u=<%=res.getString("id")%>' class="btn btn-warning">Edit</a>
+				<td><%=res.getString("created")%></td>
+				<td><a href='testUpdate.jsp?u=<%=res.getString("id")%>' class="btn btn-warning">Review</a>
 				<a href='Delete.jsp?d=<%=res.getString("id")%>' class="btn btn-danger">Delete</a></td>
 			</tr>
 			<%
@@ -223,6 +225,9 @@
 			
 			</div>
 		</table>
+		<form action="Reviews"> 
+			<input  class="btn btn-outline-primary" id = "Review" type="submit" value="Add to Reviews">
+		</form>
 	</body>
 </html>
 
