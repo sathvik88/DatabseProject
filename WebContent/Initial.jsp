@@ -352,7 +352,7 @@
 			%>
 			</div>
 		</table>
-		<!-- 
+<!-- 
 ===============================================================================================================================
 													Top 3 comedians Table 
 ===============================================================================================================================
@@ -389,7 +389,44 @@
 			%>
 			</div>
 		</table>
-		
+<!-- 
+===============================================================================================================================
+													Positive Reviewers
+===============================================================================================================================
+-->
+	<h2>Positive Reviewers </h2>
+		<p>Pulling data from Comedian Database</p> 
+		<table class="table table-striped" align="center" cellpadding="5" cellspacing="5" border="1">
+			   <thead>
+			   	
+			   	<td><b>Username</b></td>
+			   	<td><b>Score</b></td>
+				
+			   </thead>
+			<tbody>
+				<%
+			try {
+				connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
+				statement = connection.createStatement();
+				String sql = "SELECT * FROM comedian.usersTwo"; // change to match DB
+			
+			resultSet = statement.executeQuery(sql);
+			while (resultSet.next()) {
+			%>
+			
+			<tr bgcolor="#FFFFFF">
+				<td><%=resultSet.getString("username")%></td>
+				<td><%=resultSet.getString("score")%></td>
+			</tr>
+			<%
+			}
+			
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			%>
+			</div>
+		</table>
 	</body>
 </html>
 

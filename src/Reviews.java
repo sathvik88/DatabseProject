@@ -66,10 +66,39 @@ public class Reviews extends HttpServlet {
 		connect.close();
 		response.sendRedirect("VideoPosts.jsp"); 
 	}
+	public void addPositiveReviews(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException{
+		String drop = "DROP table if exists usersTwo;";
+		connect_func();   
+		preparedStatement = (PreparedStatement) connect.prepareStatement(drop);
+		preparedStatement.executeUpdate();
+		// Creates Table
+		String sql = "CREATE TABLE usersTwo (\r\n" + 
+				"	  id INT NOT NULL auto_increment,\r\n" + 
+				"	  username VARCHAR(50) NOT NULL , \r\n" +  
+				"	  score VARCHAR(45),\r\n" + 
+				"	  PRIMARY KEY(id)\r\n" + 
+				");\r\n" + 
+				"";	
+		connect_func();   
+		preparedStatement = (PreparedStatement) connect.prepareStatement(sql);
+		preparedStatement.executeUpdate();
+		
+		String sql2 = "INSERT INTO usersTwo(username, score) \r\n" +
+				"VALUES ('don@gmail.com', 'Excellent'),\r\n" +
+				"('jason@gmail.com', 'Good'),\r\n" + 
+				"('drake@gmail.com', 'Good'),\r\n" + 
+				"('travis@gmail.com', 'Excellent')\r\n" +
+				";";
+		preparedStatement = (PreparedStatement) connect.prepareStatement(sql2);
+		preparedStatement.executeUpdate();
+		System.out.println("UsersTwo created succesfully.");
+		connect.close();
+	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Reviews = new Reviews();
 		try {
 			addReview(request, response);
+			addPositiveReviews(request, response);
 		}catch (Exception e) {
 			System.out.println(e);
 		}
