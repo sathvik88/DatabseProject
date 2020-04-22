@@ -15,3 +15,4 @@ $ cd DatabseProject
 ### Youtube Videos
 * [Part 1](https://youtu.be/DQahnaK4rlE)
 * [Part 2](https://www.youtube.com/watch?v=slZW5VmwQ58)
+* [Part 3](https://youtu.be/D0kJ67jcG-E)
